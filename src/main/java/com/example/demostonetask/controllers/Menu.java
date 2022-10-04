@@ -1,5 +1,6 @@
 package com.example.demostonetask.controllers;
 
+import com.example.demostonetask.exceptions.NecklaceAbsentException;
 import com.example.demostonetask.models.entities.Necklace;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
@@ -17,30 +18,60 @@ public class Menu {
                     + "5-Сортировать камни по весу\n "
                     + "6-найти камень по цвету\n "
                     + "7-Сортировать камни про прозрачности\n "
-            +"8-Стоп");
+                    + "8-Стоп");
             switch (sc.nextInt()) {
                 case 1:
                     necklace = new Necklace();
                     necklace.product();
                     break;
                 case 2:
-                    necklace.getCaratInfo();
+                    try {
+                        necklace.getCaratInfo();
+                    } catch (NecklaceAbsentException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Исключение было обработано. Программа продолжается");
+                    }
                     break;
                 case 3:
-                    necklace.getPriceInfo();
+                    try {
+                        necklace.getPriceInfo();
+                    } catch (NecklaceAbsentException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Исключение было обработано. Программа продолжается");
+                    }
                     break;
                 case 4:
-                    necklace.getSortedPriceInfo();
+                    try {
+                        necklace.getSortedPriceInfo();
+                    }catch (NecklaceAbsentException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Исключение было обработано. Программа продолжается");
+                    }
                     break;
                 case 5:
-                    necklace.getSortedWeightInfo();
+                    try {
+                        necklace.getSortedWeightInfo();
+                    }catch (NecklaceAbsentException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Исключение было обработано. Программа продолжается");
+                    }
                     break;
                 case 6:
-                    System.out.println("Введите цвет: (пример:red)");
+                    try{
+                        System.out.println("Введите цвет: (пример:red)");
                     necklace.getStoneByColor(sc.next());
+                    }catch (NecklaceAbsentException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Исключение было обработано. Программа продолжается");
+                    }
                     break;
                 case 7:
-                    necklace.getSortedTransparencyInfo();
+                   try{
+                        necklace.getSortedTransparencyInfo();
+                   }catch (NecklaceAbsentException e){
+                       System.out.println(e.getMessage());
+                       System.out.println("Исключение было обработано. Программа продолжается");
+                   }
                     break;
                 case 8:
                     System.exit(0);
