@@ -12,4 +12,5 @@ public interface FactoryService {
     double getCaratWeight(List<Stone> stones);
 
     int getCost(List<Stone> stones);
+
 }
